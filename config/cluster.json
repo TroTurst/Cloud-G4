@@ -1,0 +1,82 @@
+{
+  "_comentario": "Supuestos de la primera entrega. Ajustar con lo que confirme el JP (ver README, seccion Supuestos).",
+
+  "modo_seco": false,
+  "directorio_estado": "./estado",
+
+  "ssh": {
+    "usuario": "ubuntu",
+    "llave": "~/.ssh/id_rsa",
+    "timeout_s": 120
+  },
+
+  "servidores": [
+    {"nombre": "server1", "ip": "10.0.10.1", "vcpu": 8, "ram_mb": 16384, "puerto_ofs": 1},
+    {"nombre": "server2", "ip": "10.0.10.2", "vcpu": 8, "ram_mb": 16384, "puerto_ofs": 2},
+    {"nombre": "server3", "ip": "10.0.10.3", "vcpu": 8, "ram_mb": 16384, "puerto_ofs": 3},
+    {"nombre": "server4", "ip": "10.0.10.4", "vcpu": 8, "ram_mb": 16384, "puerto_ofs": 4}
+  ],
+  "sobreasignacion": {"vcpu": 4.0, "ram": 1.0},
+
+  "red_datos": {
+    "bridge": "br-int"
+  },
+
+  "gateway": {
+    "local": true,
+    "ip_gestion": "10.0.10.100",
+    "if_datos": "ens4",
+    "if_externa": "ens3",
+    "ip_externa": "10.20.12.X",
+    "puerto_ofs": 5
+  },
+
+  "ofs": {
+    "modo": "ninguno",
+    "ip": "10.0.10.5",
+    "bridge": "br0",
+    "protocolo": "OpenFlow13"
+  },
+
+  "pools": {
+    "vlan": [700, 799],
+    "red_acceso": "10.60.7.0/24",
+    "prefijo_acceso": 28,
+    "red_enlaces": "192.168.0.0/16",
+    "puertos_ssh": [22000, 22999],
+    "vnc_display": [10, 99],
+    "prefijo_mac": "52:54:00:04"
+  },
+
+  "imagenes": {
+    "directorio_local": "/opt/orq/imagenes",
+    "directorio_remoto": "/var/lib/orq/imagenes",
+    "catalogo": {
+      "ubuntu": {"archivo": "jammy-server-cloudimg-amd64.img", "usuario": "ubuntu"},
+      "cirros": {"archivo": "cirros-0.6.2-x86_64-disk.img", "usuario": "cirros"}
+    }
+  },
+
+  "vms": {
+    "directorio_remoto": "/var/lib/orq/vms",
+    "kvm": true,
+    "contrasena": "pucp2026",
+    "llave_publica": ""
+  },
+
+  "flavors": {
+    "ubuntu-small": {"vcpu": 1, "ram_mb": 512, "disco_gb": 2.2, "imagen": "ubuntu"},
+    "cirros-small": {"vcpu": 1, "ram_mb": 512, "disco_gb": 1, "imagen": "cirros"}
+  },
+
+  "ejecucion": {
+    "paralelismo_global": 8,
+    "paralelismo_por_servidor": 3,
+    "reintentos": 3,
+    "espera_reintento_s": 2
+  },
+
+  "simulada": {
+    "fallar_en": []
+  }
+}
